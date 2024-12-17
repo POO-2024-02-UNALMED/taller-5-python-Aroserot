@@ -16,8 +16,7 @@ class Ave(Animal):
     def cantidadAves(cls):
         return cls.numAves
 
-    @classmethod
-    def movimiento(cls):
+    def movimiento(self):
         return "volar"
 
     @classmethod

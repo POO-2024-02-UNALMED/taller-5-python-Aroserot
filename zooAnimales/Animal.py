@@ -34,6 +34,5 @@ class Animal:
     def getGenero(self):
         return self.genero
 
-    @classmethod
-    def movimiento(cls):
+    def movimiento(self):
         return "desplazarse"

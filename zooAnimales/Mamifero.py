@@ -17,8 +17,7 @@ class Mamifero(Animal):
     def cantidadMamiferos(cls):
         return cls.numMamiferos
 
-    @classmethod
-    def movimiento(cls):
+    def movimiento(self):
         return "desplazarse"
 
     @classmethod
