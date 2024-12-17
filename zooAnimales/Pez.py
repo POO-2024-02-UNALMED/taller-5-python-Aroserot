@@ -1,39 +1,47 @@
-from zooAnimales.animal import Animal
+from .animal import Animal
 
 class Pez(Animal):
     listado = []
-    numPeces = 0
     salmones = 0
     bacalaos = 0
 
-    def __init__(self, nombre, edad, habitat, genero, colorEscamas, cantidadAletas):
+    def __init__(self, nombre=None, edad=None, habitat=None, genero=None, colorEscamas = None, cantidadAletas = None):
         super().__init__(nombre, edad, habitat, genero)
-        self.colorEscamas = colorEscamas
-        self.cantidadAletas = cantidadAletas
+        self._colorEscamas = colorEscamas
+        self._cantidadAletas = cantidadAletas
         Pez.listado.append(self)
-        Pez.numPeces += 1
 
+    def movimiento():
+        return "nadar"
+    
     @classmethod
     def cantidadPeces(cls):
-        return cls.numPeces
-
-    def movimiento(self):
-        return "nadar"
-
-    @classmethod
-    def crearSalmon(cls, nombre, edad, genero):
-        salmon = cls(nombre, edad, "océano", genero, "rojo", 6)
-        cls.salmones += 1
+        return len(cls.listado)
+    
+    @staticmethod
+    def crearSalmon(nombre, edad, genero):
+        salmon = Pez(nombre, edad, "oceano", genero)
+        salmon.setColorEscamas("rojo")
+        salmon.setCantidadAletas(6)
+        Pez.salmones += 1
         return salmon
-
-    @classmethod
-    def crearBacalao(cls, nombre, edad, genero):
-        bacalao = cls(nombre, edad, "océano", genero, "gris", 6)
-        cls.bacalaos += 1
+    
+    @staticmethod
+    def crearBacalao(nombre, edad, genero):
+        bacalao = Pez(nombre, edad, "oceano", genero)
+        bacalao.setColorEscamas("gris")
+        bacalao.setCantidadAletas(6)
+        Pez.bacalaos += 1
         return bacalao
+    
+    def setColorEscamas(self, colorEscamas):
+        self._colorEscamas = colorEscamas
 
     def getColorEscamas(self):
-        return self.colorEscamas
+        return self._colorEscamas
+
+    def setCantidadAletas(self, cantidadAletas):
+        self._cantidadAletas = cantidadAletas
 
     def getCantidadAletas(self):
-        return self.cantidadAletas
+        return self._cantidadAletas

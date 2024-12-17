@@ -1,20 +1,23 @@
-class Zona:
-    def __init__(self, nombre, zoo=None, animales=None):
-        self.nombre = nombre
-        self.zoo = zoo
-        self.animales = animales if animales is not None else []
+from gestion.zoologico import Zoologico
+from zooAnimales.animal import Animal
 
-    def agregarAnimales(self, animal):
-        self.animales.append(animal)
+class Zona:
+
+    def __init__(self,nombre = None,zoo = None,animales = None):
+        self._nombre = nombre
+        self._zoo = zoo
+        if animales == None:
+            animales = []
+        self._animales = animales
+
+    def agregarAnimales(self,animal):
+        self._animales.append(animal)
 
     def cantidadAnimales(self):
-        return len(self.animales)
+        return len(self._animales)
     
     def getNombre(self):
-        return self.nombre
+        return self._nombre
     
     def getZoo(self):
-        return self.zoo
-    
-    def getAnimales(self):
-        return self.animales
+        return self._zoo

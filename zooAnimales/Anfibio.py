@@ -1,39 +1,46 @@
-from zooAnimales.animal import Animal
+from .animal import Animal
 
 class Anfibio(Animal):
     listado = []
-    numAnfibios = 0
     ranas = 0
     salamandras = 0
 
-    def __init__(self, nombre, edad, habitat, genero, colorPiel, venenoso):
-        super().__init__(nombre, edad, habitat, genero)
-        self.colorPiel = colorPiel
-        self.venenoso = venenoso
+    def __init__(self, nombre = None, edad = None, habitat = None, genero = None, colorPiel = None, venenoso = None):
+        super().__init__(nombre,edad,habitat,genero)
+        self._colorPiel = colorPiel
+        self._venenoso = venenoso
         Anfibio.listado.append(self)
-        Anfibio.numAnfibios += 1
-
-    @classmethod
-    def cantidadAnfibios(cls):
-        return cls.numAnfibios
 
     def movimiento(self):
         return "saltar"
-
+    
     @classmethod
-    def crearRana(cls, nombre, edad, genero):
-        rana = cls(nombre, edad, "selva", genero, "rojo", True)
-        cls.ranas += 1
+    def cantidadAnfibios(cls):
+        return len(cls.listado)
+    
+    @staticmethod
+    def crearRana(nombre, edad, genero):
+        rana = Anfibio(nombre, edad, "selva", genero)
+        rana.setColorPiel("rojo")
+        rana.setVenenoso(True)
+        Anfibio.ranas += 1
         return rana
-
-    @classmethod
-    def crearSalamandra(cls, nombre, edad, genero):
-        salamandra = cls(nombre, edad, "selva", genero, "negro y amarillo", False)
-        cls.salamandras += 1
+    @staticmethod
+    def crearSalamandra(nombre, edad, genero):
+        salamandra = Anfibio(nombre, edad, "selva", genero)
+        salamandra.setColorPiel("negro y amarillo")
+        salamandra.setVenenoso(False)
+        Anfibio.salamandras += 1
         return salamandra
+    
+    def isVenenoso(self):
+        return self._venenoso
+
+    def setColorPiel(self, colorPiel):
+        self._colorPiel = colorPiel
 
     def getColorPiel(self):
-        return self.colorPiel
+        return self._colorPiel
 
-    def isVenenoso(self):
-        return self.venenoso
+    def setVenenoso(self, venenoso):
+        self._venenoso = venenoso

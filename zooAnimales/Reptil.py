@@ -1,39 +1,47 @@
-from zooAnimales.animal import Animal
+from .animal import Animal
 
 class Reptil(Animal):
     listado = []
-    numReptiles = 0
     iguanas = 0
     serpientes = 0
 
-    def __init__(self, nombre, edad, habitat, genero, colorEscamas, largoCola):
+    def __init__(self, nombre=None, edad=None, habitat=None, genero=None, colorEscamas = None, largoCola = None):
         super().__init__(nombre, edad, habitat, genero)
-        self.colorEscamas = colorEscamas
-        self.largoCola = largoCola
+        self._colorEscamas = colorEscamas
+        self._largoCola = largoCola
         Reptil.listado.append(self)
-        Reptil.numReptiles += 1
 
+    def movimiento():
+        return "reptar"
+    
     @classmethod
     def cantidadReptiles(cls):
-        return cls.numReptiles
-
-    def movimiento(self):
-        return "reptar"
-
-    @classmethod
-    def crearIguana(cls, nombre, edad, genero):
-        iguana = cls(nombre, edad, "humedal", genero, "verde", 3)
-        cls.iguanas += 1
+        return len(cls.listado)
+    
+    @staticmethod
+    def crearIguana(nombre, edad, genero):
+        iguana = Reptil(nombre, edad, "humedal", genero)
+        iguana.setColorEscamas("verde")
+        iguana.setLargoCola(3)
+        Reptil.iguanas += 1
         return iguana
-
-    @classmethod
-    def crearSerpiente(cls, nombre, edad, genero):
-        serpiente = cls(nombre, edad, "jungla", genero, "blanco", 1)
-        cls.serpientes += 1
+    
+    @staticmethod
+    def crearSerpiente(nombre, edad, genero):
+        serpiente = Reptil(nombre, edad, "jungla", genero)
+        serpiente.setColorEscamas("blanco")
+        serpiente.setLargoCola(1)
+        Reptil.serpientes += 1
         return serpiente
+    
+    def setColorEscamas(self, colorEscamas):
+        self._colorEscamas = colorEscamas
 
     def getColorEscamas(self):
-        return self.colorEscamas
-    
+        return self._colorEscamas
+
+    def setLargoCola(self, largoCola):
+        self._largoCola = largoCola
+
     def getLargoCola(self):
-        return self.largoCola
+        return self._largoCola
