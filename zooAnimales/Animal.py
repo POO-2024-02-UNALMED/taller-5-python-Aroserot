@@ -14,11 +14,11 @@ class Animal:
         return "desplazarse"
 
     def totalPorTipo():
-        from zooAnimales.Anfibio import Anfibio
-        from zooAnimales.Ave import Ave
-        from zooAnimales.Mamifero import Mamifero
-        from zooAnimales.Pez import Pez
-        from zooAnimales.Reptil import Reptil
+        from zooAnimales.anfibio import Anfibio
+        from zooAnimales.ave import Ave
+        from zooAnimales.mamifero import Mamifero
+        from zooAnimales.pez import Pez
+        from zooAnimales.reptil import Reptil
         return "Mamiferos : {}\nAves : {}\nReptiles : {}\nPeces : {}\nAnfibios : {}".format(Mamifero.numMamiferos,Ave.numAves,Reptil.numReptiles,Pez.numPeces,Anfibio.numAnfibios)
 
     def toString(self):
